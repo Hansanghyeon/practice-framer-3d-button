@@ -53,7 +53,12 @@ function App() {
           <Blush type="blue" />
           <Blush type="pink" />
           <ShapesContainer>
-            <ShapesCanvas />
+            <ShapesCanvas
+              isHover={isHover}
+              isPress={isPress}
+              mouseX={mouseX}
+              mouseY={mouseY}
+            />
           </ShapesContainer>
         </Shapes>
         <Label variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}>

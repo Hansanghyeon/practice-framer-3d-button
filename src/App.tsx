@@ -1,5 +1,5 @@
 import { motion, useMotionValue } from "framer-motion";
-import styled from "styled-components";
+import styled, { css } from "styled-components";
 import useMeasure from "react-use-measure";
 import { useState } from "react";
 
@@ -47,7 +47,10 @@ function App() {
             rest: { opacity: 0 },
             hover: { opacity: 1 },
           }}
-        ></Shapes>
+        >
+          <Blush type="blue" />
+          <Blush type="pink" />
+        </Shapes>
         <Label variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}>
           play
         </Label>
@@ -104,4 +107,23 @@ const Shapes = styled(motion.div)`
     #d6cbf6 30%,
     var(--pink) 70%
   );
+`;
+
+const Blush = styled.div<{ type: "blue" | "pink" }>`
+  position: absolute;
+  bottom: -15px;
+  width: 100px;
+  height: 30px;
+  filter: blur(20px);
+
+  ${({ type }) => type === "blue" && Blue}
+  ${({ type }) => type === "pink" && Pink}
+`;
+const Blue = css`
+  left: 20px;
+  background: var(--blue);
+`;
+const Pink = css`
+  right: 20px;
+  background: var(--purple);
 `;

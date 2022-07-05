@@ -2,6 +2,7 @@ import { motion, useMotionValue } from "framer-motion";
 import styled, { css } from "styled-components";
 import useMeasure from "react-use-measure";
 import { useState } from "react";
+import ShapesCanvas from "./Shapes";
 
 function App() {
   const [ref, bounds] = useMeasure({ scroll: false });
@@ -19,7 +20,8 @@ function App() {
       <Button
         ref={ref}
         initial={false}
-        animate={isHover ? "hover" : "rest"}
+        // animate={isHover ? "hover" : "rest"}
+        animate={"hover"}
         whileTap="press"
         variants={{
           rest: { scale: 1 },
@@ -50,7 +52,9 @@ function App() {
         >
           <Blush type="blue" />
           <Blush type="pink" />
-          <ShapesContainer />
+          <ShapesContainer>
+            <ShapesCanvas />
+          </ShapesContainer>
         </Shapes>
         <Label variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}>
           play

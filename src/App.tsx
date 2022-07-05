@@ -37,7 +37,17 @@ function App() {
         onTapStart={() => setIsPress(true)}
         onTap={() => setIsPress(false)}
         onTapCancel={() => setIsPress(false)}
+        onPointerMove={(e) => {
+          mouseX.set(e.clientX - bounds.x - bounds.width / 2);
+          mouseY.set(e.clientX - bounds.y - bounds.height / 2);
+        }}
       >
+        <Shapes
+          variants={{
+            rest: { opacity: 0 },
+            hover: { opacity: 1 },
+          }}
+        ></Shapes>
         <Label variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}>
           play
         </Label>
@@ -79,4 +89,19 @@ const Button = styled(motion.button)`
   text-align: center;
   display: flex;
   align-items: center;
+`;
+
+const Shapes = styled(motion.div)`
+  position: absolute;
+  top: -1px;
+  left: -1px;
+  right: -1px;
+  bottom: -1px;
+  border-radius: 60px;
+  background: linear-gradient(
+    60deg,
+    var(--blue) 0%,
+    #d6cbf6 30%,
+    var(--pink) 70%
+  );
 `;

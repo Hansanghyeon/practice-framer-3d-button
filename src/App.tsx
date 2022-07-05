@@ -1,10 +1,43 @@
-import { motion } from "framer-motion";
+import { motion, useMotionValue } from "framer-motion";
 import styled from "styled-components";
+import useMeasure from "react-use-measure";
+import { useState } from "react";
 
 function App() {
+  const [ref, bounds] = useMeasure({ scroll: false });
+  const [isHover, setIsHover] = useState(false);
+  const [isPress, setIsPress] = useState(false);
+  const mouseX = useMotionValue(0);
+  const mouseY = useMotionValue(0);
+
+  const resetMousePosition = () => {
+    mouseX.set(0);
+    mouseY.set(0);
+  };
   return (
     <>
-      <Button>
+      <Button
+        ref={ref}
+        initial={false}
+        animate={isHover ? "hover" : "rest"}
+        whileTap="press"
+        variants={{
+          rest: { scale: 1 },
+          hover: { scale: 1.5 },
+          press: { scale: 1.4 },
+        }}
+        onHoverStart={() => {
+          resetMousePosition();
+          setIsHover(true);
+        }}
+        onHoverEnd={() => {
+          resetMousePosition();
+          setIsHover(false);
+        }}
+        onTapStart={() => setIsPress(true)}
+        onTap={() => setIsPress(false)}
+        onTapCancel={() => setIsPress(false)}
+      >
         <Label variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}>
           play
         </Label>

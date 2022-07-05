@@ -107,10 +107,10 @@ export function Torus() {
 
 export function Icosahedron() {
   return (
-    <motion.div>
+    <motion.mesh>
       <icosahedronGeometry args={[0.7, 0]} />
       <Material />
-    </motion.div>
+    </motion.mesh>
   );
 }
 
@@ -138,7 +138,7 @@ function Camera({ mouseX, mouseY, ...props }: CameraProps) {
     const { current: cam } = cameraRef;
     if (cam) {
       cam.aspect = size.width / size.height;
-      cam.updateProjectMatrix();
+      cam.updateProjectionMatrix();
     }
   }, [size, props]);
 

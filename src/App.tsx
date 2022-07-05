@@ -50,6 +50,7 @@ function App() {
         >
           <Blush type="blue" />
           <Blush type="pink" />
+          <ShapesContainer />
         </Shapes>
         <Label variants={{ hover: { scale: 0.85 }, press: { scale: 1.1 } }}>
           play
@@ -126,4 +127,15 @@ const Blue = css`
 const Pink = css`
   right: 20px;
   background: var(--purple);
+`;
+
+const ShapesContainer = styled.div`
+  position: absolute;
+  top: -100px;
+  bottom: -100px;
+  left: -100px;
+  right: -100px;
+  width: calc(100% + 200px);
+  pointer-events: none;
+  background: #000;
 `;
